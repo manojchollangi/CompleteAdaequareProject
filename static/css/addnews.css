@@ -1,0 +1,56 @@
+/* Split the screen in half */
+.split1 {
+    height: 100%;
+    width: 44%;
+    position: fixed;
+    top: 27.5%;
+  }
+  .split2 {
+    height: 100%;
+    width: 56%;
+    position: fixed;
+    top: 27.5%;
+    overflow: scroll;
+    
+  }
+  
+  /* Control the left side */
+  .left {
+    left: 0;
+    background-color:bisque;
+    
+  }
+  
+  /* Control the right side */
+  .right {
+    right: 0;
+    background-color:bisque;
+  }
+  
+  /* If you want the content centered horizontally and vertically */
+  .centered {
+    position: absolute;
+  }
+  .manoj{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 55%;
+  }
+
+  .custom {
+    height: 100%;
+    width: 45%;
+    position: fixed;
+    top: 55%;
+  }
+  
+  div.scroll {
+    margin:4px, 4px;
+    padding:4px;
+    background-color: bisque;
+    width: 765px;
+    height: 480px;
+    overflow-y: auto;
+    text-align:justify;
+}

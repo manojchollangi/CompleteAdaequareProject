@@ -1,0 +1,69 @@
+{% extends 'testapp/base.html' %}
+
+{% block content %}
+
+
+
+<div class="" align=''>
+    <h2 style="color:red"><b>{{ message }}</b></h2>
+    <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+    <form class="post-form" method="POST" align="center" action='/newseditor/newssearch'>
+          {% csrf_token %}
+            <b>{{ form }}</b>
+      <button type="submit" class="btn btn-success" name="button">Submit</button>
+      <a href="/newseditor/newssearch/addnews" class='btn btn-success' style="float:right">Add News</a><br>
+      <hr style="height:1px;border-width:0;color:gray;background-color:gray">
+      <table class="table table-dark table-hover" border="2" >
+        <thead align="center">
+            <tr>
+              <th>slno</th>
+              <th>Image</th>
+              <th>NewsHeader</th>
+              <th>NewsType</th>
+              <th>NewsData</th>
+              <th>PublishDate</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <tbody align="center">
+          {% for news in posts_obj %}
+            <tr>
+              <td>{{ news.slno }}</td>
+              <td><img src="{{ news.news_images_urls }}" alt="Image Not available" height="60" width="100" /></td>
+              <td>{{ news.news_header }}</td>
+              <td>{{ news.news_type }}</td>
+              <td>{{ news.news_data|truncatechars:50 }}</td>
+              <td>{{ news.publish_date|date:"Y/m/d" }}</td>
+              <td><a href="/newseditor/newssearch/edit/{{ news.slno }}"><span class="glyphicon glyphicon-pencil">Edit</span></a></td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="7" class="text-center bg-warning">No News</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </form>
+  </div>
+ 
+
+<hr style="height:2px;border-width:0;color:blue;background-color:blue">
+
+  <footer>
+    {% if posts_obj.has_previous %}
+
+      <a href="?page=1">&laquo First </a>
+      <a href="?page={{ posts_obj.previous_page_number}}">Previous </a>
+
+    {% endif %}
+
+    Page{{ posts_obj.number }} of {{ posts_obj.paginator.num_pages }}
+
+    {% if posts_obj.has_next %}
+
+      <a href="?page={{ posts_obj.next_page_number }}">Next</a>
+      <a href="?page={{ posts_obj.paginator.num_pages }}">Last &raquo</a> 
+
+    {% endif %}
+  </footer>
+{% endblock %}

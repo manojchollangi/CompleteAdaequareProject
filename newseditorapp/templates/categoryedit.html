@@ -1,0 +1,21 @@
+{% extends "testapp/base.html" %}
+
+{% block content %}
+
+
+
+<div class="container" align='center'>
+  <h3 >Modify Details</h3>
+  <h4>{{ message }}</h4>
+  <form class="post-form" method="POST" action="/newseditor/newscategory/edit/update/{{ news.slno }}">
+        {% csrf_token %}
+      <table class="table-sm">
+          {{ form.as_table }}
+      </table>
+    <button type="submit" class="btn btn-success" name="button">Submit</button>
+    <a class="btn btn-success" href='/newseditor/newssearch' role="button">News</a>
+  </form>
+</div>
+
+
+{% endblock content %}

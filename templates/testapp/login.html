@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>User login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  </head>
+  <body>
+    <div class="center" style="">
+        <h1 class="display-5" align="center"><b>WELCOME TO ADAEQUARE NEWS PORTAL</b></h1>
+        <p class="" align="center">CONTINUOUS NEWS UPDATE FOR EVERY MINUTE</p>
+        <div class="topnav">
+            <b><a href="/newsapp/signup" style="float:left">Sign up</a>&nbsp;</b>
+            <b><a href="/newsapp/login" style="float:right">Login</a>&nbsp;</b>
+        </div>
+    </div>
+    <div align='center' style="margin-top:5em;">
+        <h3 style="">Enter Details</h3>
+        <h4 style="color:green">{{ message }}</h4>
+        <form align='center' method="POST" action="/newsapp/redirect">
+            {% csrf_token %}
+            <table align='center' class="table-sm">
+                {{ form.as_table }}
+            </table>  
+        <button type="submit" class="btn btn-success" name="button">login</button>
+        </form>
+    </div>
+  </body>
+</html>

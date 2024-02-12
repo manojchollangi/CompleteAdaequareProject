@@ -1,0 +1,43 @@
+{% extends "testapp/base.html" %}
+
+{% block content %}
+
+
+<div class="split2 left scroll">
+  <div class="centered">
+    <h3 align="center">Add News</h3>
+    <h4 style="color:green;" align="center">{{ message }}</h4>
+      <form class="post-form" method="POST" action="/newseditor/newssearch/addnews">
+          {% csrf_token %}
+        <table class="table-sm" align="center">
+          {{ form.as_table }}
+        </table>
+      <div align="center">
+      <button align="center" type="submit" class="btn btn-success" name="button">Submit</button>
+      <a align="center" class="btn btn-success" href='/newseditor/newssearch' role="button">News</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class = "vertical"></div>
+
+<div class="split1 right">
+  <div class="centered">
+    <form align="center" class='custom' action="/newseditor/newssearch/addnews/upload" method="POST" enctype="multipart/form-data">
+      <h2 align="center" >Upload bulk News</h2>
+      {% csrf_token %}
+      <input type="file"
+             title="Upload excel file"
+             name="excel_file"
+             style="border: 1px solid black; padding: 5px;"
+             required="required">
+
+      <input type="submit"
+             value="Upload"
+             style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;"
+             class="btn btn-success">
+  </form>
+  </div>
+</div>
+{% endblock %}

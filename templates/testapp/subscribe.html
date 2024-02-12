@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>News list</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  </head>
+<body onload="subscription('subscribe')">
+    <script type="text/javascript">
+        function buildhtml(subscription_packages){
+          htmlblock = ""
+          for (var i=0; i < subscription_packages.length; i++){
+            console.log(subscription_packages)
+            htmlblock += "<div align='center'><table class='table-responsive-sm' width='400' border='3' style='margin-left:10em; margin-bottom: 2.5em; float:left;'><tr align='center'><th style='color:black;' align='center'>" +subscription_packages[i].sub_name+"</th></tr><tr><td align='center' style='color:black;'>"+subscription_packages[i].package_details+"</td></tr><tr><td align='center' style='color:black;' style='color:white;'>Rs:₹ "+subscription_packages[i].package_amount+"/-</td></tr><tr><td align='center' style='color:black;'><b><a href='/newsapp/signup' class='btn btn-success'>Subscribe</a></b></td></tr></table></div>";
+          }
+          return htmlblock;
+        }
+        function subscription(url){
+          $.ajax({
+            type:'GET',
+            url :url,
+            success:function(response){
+              console.log("success",response.subscription_packages)
+              document.getElementById("subscription").innerHTML = "<div align='center'>"+buildhtml(response.subscription_packages)+"</div>";
+              },
+            error:function(error){
+              console.log("error",error);
+            }
+          })
+        }
+      </script>
+    <div class="center">
+        <h1 class="display-5" align="center"><b>WELCOME TO ADAEQUARE NEWS PORTAL</b></h1>
+        <p class="" align="center">CONTINUOUS NEWS UPDATE FOR EVERY MINUTE</p>
+        <hr style="height:50px;border-width:0;color:gray;background-color:black">
+    </div>
+    <h2 align="center" style="color:black;">Benefits that you are going to get on subscription </h2>
+    <div >
+        <table class='table-responsive-sm' width='400' border='3' style='margin-left:2.5em; margin-bottom: 2.5em; float:left;'>
+            <thead>
+                <tr align='center'>
+                    <th style='color:;' align='center'>Learning Corner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style='color:;'>
+                        <ul>
+                            <li>Read blog with content focused towards exam preparation and vocabulary, comprehension improvement guides</li>
+                            <li>Take the daily quiz to test your knowledge on current affairs; accumulate points to climb up the leaderboard!</li>
+                            <li>Read explainer articles, improvement guides and other content relevant to competitive exam preparations</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table class='table-responsive-sm' width='400' border='3' style='margin-left:2.5em; margin-bottom: 2.5em; float:left;'>
+            <thead>
+                <tr align='center'>
+                    <th style='color:;' align='center'>Download Pdfs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style=''>
+                        <ul>
+                            <li>Read news stories and articles organized in a layout identical to that of the print newspaper and save it for future </li>
+                            <li>Save/download individual articles and pages or the entire issue to read offline at your convenience</li> 
+                            <li>Toggle and read from over 11 editions of The Hindu with a single subscription and same them for lifetime</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table class='table-responsive-sm' width='400' border='3' style='margin-left:2.5em; margin-right:1.8em; margin-bottom: 2.5em; float:left;'>
+            <thead>
+                <tr align='center'>
+                    <th style='' align='center'>Access Archives</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style=''>
+                        <ul>
+                            <li>Read blog with content focused towards exam preparation and vocabulary, comprehension improvement guides</li>
+                            <li>Take the daily quiz to test your knowledge on current affairs; accumulate points to climb up the leaderboard!</li>    
+                            <li>Read explainer articles, improvement guides and other content relevant to competitive exam preparations</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3 align="center" style="">The available subscription packages</h3> 
+    <div id="subscription">
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+ </body>
+</html>
+

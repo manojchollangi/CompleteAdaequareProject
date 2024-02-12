@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>News Paper</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  </head>
+  <body style=""  onload="getnews('retrieve')">
+    <script type="text/javascript">
+      function buildhtml(news_type){
+        htmlblock = ""
+        for (var i=0; i < news_type.length; i++){
+          htmlblock += "<div align='center'><table class='table-responsive-sm' width='400' border='3' style='margin-left:2.5em; margin-top:2.5em; margin-bottom: 2.5em; float:left;'><tr align='center'><th style='color:;' align='center' colspan='2'>" +news_type[i].category+"</th></tr>";
+          for (var j=0; j < news_type[i].latestNews.length; j++){
+            console.log(news_type[i].latestNews[j].news_header)
+           htmlblock +="<tr><td><img src="+news_type[i].latestNews[j].news_images_urls+" height='70' width='100'></td><td style='color:;'>"+news_type[i].latestNews[j].news_header+"<a href='newspaper/news/"+news_type[i].latestNews[j].slno+"/'>.....Read more</a></td></tr>";
+          }
+          htmlblock += "</table></div>";
+        }
+        return htmlblock;
+      }
+      function getnews(url){
+        $.ajax({
+          type:'GET',
+          url :url,
+          success:function(response){
+            console.log("success",response.news_type)
+            document.getElementById("NewsContainer").innerHTML = "<div align='center'>"+buildhtml(response.news_type)+"</div>";
+            },
+          error:function(error){
+            console.log("error",error);
+          }
+        })
+      }
+    </script>
+
+    <div class="center" style="color:;">
+        <h1 class="display-5" align="center"><b>WELCOME TO ADAEQUARE NEWS PORTAL</b></h1>
+        <p class="" style="color:;" align="center">CONTINUOUS NEWS UPDATE FOR EVERY MINUTE</p>{% if user.is_authenticated %}<h5 align="right" style="color:red"><b>Hi {{ user.username }}!&nbsp;&nbsp;&nbsp;
+          <a style="color:#3bc42b" href="/accounts/logout/">Logout</a></b></h5>
+        <div class="topnav">
+          <b><a href="/newsapp/packages" style="float:right">Buy a Subsciption</a>&nbsp;</b>
+        </div>
+      </div>
+    <div style='background-color:#33290e' align='center' id="NewsContainer"></div>
+    <br><br>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% else %}
+          <p>You are not logged in</p>
+          <a href="{% url 'login' %}">Log In</a>
+          {% endif %}
+  </body>
+</html>

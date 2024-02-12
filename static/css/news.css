@@ -1,0 +1,25 @@
+.center{
+  text-align: center;
+  background-repeat:no-repeat;
+
+}
+
+
+body{
+  background:black;
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+
+img {
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 240px;
+  height: 240px;
+}
+hr{
+       height: 1px;
+       background-color: #ccc;
+       border: none;
+}

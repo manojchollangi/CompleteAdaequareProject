@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to ADAEQUARE News Portal</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  </head>
+  <body>
+      <div class="" align="center">
+        {% load static %} <img src="{% static 'newseditor/untitled.png' %}" alt="home" align="left" height='96' width="130"/>
+        <h1 align="center" class="display-5">WELCOME TO ADAEQUARE NEWS EDITOR</h1>
+        <p class="" align="center">CONTINUOUS NEWS UPDATE FOR EVERY MINUTE</p>
+        <center>
+          {% block content %}
+
+          {% endblock %}
+        </center>
+      </div>
+  </body>
+</html>

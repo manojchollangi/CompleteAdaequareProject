@@ -1,0 +1,36 @@
+{% extends 'testapp/base1.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}<h5 align="right" style="color:red"><b>Hi {{ user.username }}!&nbsp;&nbsp;&nbsp;
+  <a style="color:#3bc42b" href="/accounts/logout/">Logout</a></b></h5>
+  <div class="topnav">
+    <b><a href="/newseditor/newssearch">News</a></b>
+    <b><a href="/home" style="float:right">Contact us</a></b>
+    <b><a href="/newseditor/users" style="float:right">Users</a></b>
+    <b><a href="/newseditor/newscategory" style="float: right">Categories</a></b>
+  </div>
+<div class="container">
+    <form align="center" action="/home/sendmail/" method="POST">
+        {% csrf_token %}
+        <div>
+          <h3 align="center">Contact us</h3>
+          <div>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+          </div>
+
+          <div>
+            <label for="msg">Message:</label>
+            <textarea id="msg" rows="3" name='msg' placeholer="enter messeage"></textarea required>
+          </div>
+        
+            <button type="submit" class="btn btn-success">Submit</button>
+        {% else %}
+          <p>You are not logged in</p>
+          <a href="{% url 'login' %}">Log In</a>
+          {% endif %}
+        </div>
+    </form>
+</div>
+
+{% endblock %}
