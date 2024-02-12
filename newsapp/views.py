@@ -28,7 +28,8 @@ logger = logging.getLogger("newsapp_views")
 
 # get available news in the database.
 def news_types_view(request):
-    news_list = get_valid_news_types()
+    custom_news_list = get_valid_news_types()
+    news_list=custom_news_list
     return render(request, 'testapp/news.html', {"news_list": news_list})
 
 
